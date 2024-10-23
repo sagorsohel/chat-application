@@ -6,6 +6,7 @@ function notFoundHandler(req, res, next) {
 }
 
 function errorHandler(err, req, res, next) {
+    res.render('error')
     res.status(err.status || 500)
     res.json({
         error: {
