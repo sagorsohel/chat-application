@@ -6,7 +6,9 @@ function notFoundHandler(req, res, next) {
 }
 
 function errorHandler(err, req, res, next) {
-    res.render('error')
+    res.render('error',{
+        title:'Error page'
+    })
     res.status(err.status || 500)
     res.json({
         error: {
@@ -14,4 +16,9 @@ function errorHandler(err, req, res, next) {
             stack: err.stack
         }
     })
+}
+
+module.exports={
+    notFoundHandler,
+    errorHandler
 }
