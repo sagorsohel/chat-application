@@ -7,11 +7,11 @@ const peopleSchema=new mongoose.Schema({
     },
     mobile:{
         type:String,
-        required:true
+        // required:true
     },
     email:{
         type:String,
-        required:true,
+        // required:true,
         lowercase:true
 
     },
