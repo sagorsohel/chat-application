@@ -5,8 +5,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 
-//  internal imports
-
+// internal imports
 const {
   notFoundHandler,
   errorHandler,
@@ -15,34 +14,32 @@ const {
 const app = express();
 dotenv.config();
 
-// connect to the database
-
+// Connect to the database
 mongoose
-  .connect(process.env.MONGODB_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("MongoDB Connected...");
-  })
-  .catch((err) => console.log(err));
+  .connect(process.env.MONGODB_URL)
+  .then(() => console.log("MongoDB Connected..."))
+  .catch((err) => console.error("MongoDB connection error:", err));
 
-// request parser
-
+// Request parser
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true })); // Provide 'extended' option to avoid warning
 
-// view engine
+// View engine
 app.set("view engine", "ejs");
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
-// routing
+// Routes (Add your routes here)
 
-// error handler
-app.use(errorHandler)
-app.use(errorHandler)
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running on port ${process.env.PORT}`);
+// 404 Not Found Handler
+app.use(notFoundHandler);
+
+// Error Handler
+app.use(errorHandler);
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
