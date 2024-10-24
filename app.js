@@ -35,7 +35,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 // 404 Not Found Handler
 app.use(notFoundHandler);
 
-// Error Handler
+// Common Error Handler
 app.use(errorHandler);
 
 // Start the server
