@@ -1,8 +1,9 @@
 const { getUsers } = require('../controllers/userController')
+const decorateHtmlResponse = require('../middlewares/common/decorateHtmlResponse')
 
 const userRouter =require('express').Router()
 
-userRouter.get('/', getUsers)
+userRouter.get('/', decorateHtmlResponse("User"), getUsers)
 
 
 module.exports =userRouter
