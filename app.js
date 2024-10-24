@@ -14,6 +14,7 @@ const {
 // Router imports
 const loginRouter = require("./router/loginRouter");
 const userRouter = require("./router/userRouter");
+const inboxRouter = require("./router/inboxRouter");
 
 const app = express();
 dotenv.config();
@@ -38,6 +39,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 
 app.use('/',loginRouter)
 app.use('/users',userRouter)
+app.use('/inbox',inboxRouter)
 
 // 404 Not Found Handler
 app.use(notFoundHandler);
